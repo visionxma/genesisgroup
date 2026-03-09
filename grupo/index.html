@@ -17,13 +17,16 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../assets/icons/genesis-logo.svg">
 
-    <!-- Facebook Pixel -->
-<!-- Pixel Manager - Cole no <head> do seu site -->
+    <!-- Pixel Manager -->
 <script>
 (function(){
   var SUPABASE_URL = 'https://tcwpfgfddxajlewhmwjr.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_POXhkhXnii9Jv3o5XNZk2Q_9a0nsxAD';
-  var domain = window.location.hostname;
+
+  /* Inclui o path para diferenciar /grupo das demais páginas.
+     Cadastre no Supabase como: seudominio.com/grupo             */
+  var path   = window.location.pathname.replace(/\/+$/, '') || '';
+  var domain = window.location.hostname + path;
 
   fetch(SUPABASE_URL + '/rest/v1/pixels?active=eq.true&domain=eq.' + encodeURIComponent(domain) + '&select=platform,pixel_id', {
     headers: {
@@ -79,10 +82,6 @@
   });
 })();
 </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=867331249627993&ev=PageView&noscript=1"/>
-    </noscript>
 
     <style>
         /* ======================================================
@@ -680,7 +679,7 @@
             </div>
 
             <a href="https://wa.me/5551981052679" target="_blank" class="btn-cta"
-               onclick="fbq('track', 'Lead', {content_name: 'Grupo VIP Hero'})">
+               onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Hero'})">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z"/>
                 </svg>
@@ -848,7 +847,7 @@
         <!-- CTA repetido -->
         <a href="https://wa.me/5551981052679" target="_blank" class="btn-cta"
            style="max-width:100%; animation-delay:0.5s;"
-           onclick="fbq('track', 'Lead', {content_name: 'Grupo VIP Features'})">
+           onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Features'})">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z"/>
             </svg>
