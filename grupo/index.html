@@ -121,6 +121,103 @@
         a { text-decoration: none; color: inherit; }
 
         /* ======================================================
+           TICKER
+        ====================================================== */
+        .trading-ticker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 12, 0.55);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 9px 0;
+            z-index: 100;
+            overflow: hidden;
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker-scroll 25s linear infinite;
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 40px;
+            padding-right: 40px;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #98989D;
+            white-space: nowrap;
+        }
+
+        .ticker-item strong {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .ticker-item .up   { color: var(--green); }
+        .ticker-item .down { color: #FF3333; }
+
+        .ticker-item i { width: 13px; height: 13px; }
+
+        @keyframes ticker-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ======================================================
+           SOCIAL PROOF BANNER
+        ====================================================== */
+        .social-proof-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 36px 24px 0;
+            text-align: center;
+        }
+
+        .social-proof-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--green);
+            line-height: 1;
+            letter-spacing: -2px;
+            text-shadow: 0 0 20px var(--green-glow);
+        }
+
+        .social-proof-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-white);
+            max-width: 280px;
+            line-height: 1.4;
+        }
+
+        .social-proof-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            animation: bounce-arrow 1.4s ease-in-out infinite;
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(6px); }
+        }
+
+        /* ======================================================
            HERO
         ====================================================== */
         .hero {
@@ -130,6 +227,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
+            padding-top: 38px;
             padding-bottom: 60px;
             text-align: center;
             overflow: hidden;
@@ -661,6 +759,30 @@
 
 <body>
 
+    <!-- Ticker de mercado fixo no topo -->
+    <div class="trading-ticker">
+        <div class="ticker-track">
+            <div class="ticker-content">
+                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945 (+0.12%)</strong></span>
+                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530 (-0.05%)</strong></span>
+                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20 (+0.30%)</strong></span>
+                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515 (+0.18%)</strong></span>
+                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490 (-0.22%)</strong></span>
+                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00 (+1.45%)</strong></span>
+                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15 (+2.10%)</strong></span>
+            </div>
+            <div class="ticker-content">
+                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945 (+0.12%)</strong></span>
+                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530 (-0.05%)</strong></span>
+                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20 (+0.30%)</strong></span>
+                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515 (+0.18%)</strong></span>
+                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490 (-0.22%)</strong></span>
+                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00 (+1.45%)</strong></span>
+                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15 (+2.10%)</strong></span>
+            </div>
+        </div>
+    </div>
+
     <!-- ============================================================
          HERO
     ============================================================ -->
@@ -716,6 +838,17 @@
     <!-- ============================================================
          PROVA SOCIAL — CAROUSEL
     ============================================================ -->
+    <div class="social-proof-banner">
+        <div class="social-proof-number">289+</div>
+        <p class="social-proof-text">pessoas já lucraram usando esses sinais</p>
+        <div class="social-proof-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <polyline points="19 12 12 19 5 12"/>
+            </svg>
+        </div>
+    </div>
+
     <div class="section">
         <h2 class="section-title">Resultados <span class="green">Reais</span></h2>
         <p class="section-subtitle">Membros do grupo enviando os lucros toda semana
@@ -927,6 +1060,9 @@
 
         startAutoplay();
     </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
 
 </body>
 </html>
