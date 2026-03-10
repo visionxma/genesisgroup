@@ -6,88 +6,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Grupo VIP | Allan Costa — Opções Binárias</title>
 
-    <meta name="description" content="Seja meu sócio. Entre no Grupo VIP de Opções Binárias com Allan Costa e receba sinais diários com mais de 7 anos de experiência.">
+    <meta name="description"
+        content="Seja meu sócio. Entre no Grupo VIP de Opções Binárias com Allan Costa e receba sinais diários com mais de 7 anos de experiência.">
     <meta name="theme-color" content="#000000">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../assets/icons/genesis-logo.svg">
 
-    <!-- Pixel Manager -->
-<script>
-(function(){
-  var SUPABASE_URL = 'https://tcwpfgfddxajlewhmwjr.supabase.co';
-  var SUPABASE_KEY = 'sb_publishable_POXhkhXnii9Jv3o5XNZk2Q_9a0nsxAD';
+    <!-- Pixel Manager - Cole no <head> do seu site -->
+    <script>
+        (function () {
+            var SUPABASE_URL = 'https://tcwpfgfddxajlewhmwjr.supabase.co';
+            var SUPABASE_KEY = 'sb_publishable_POXhkhXnii9Jv3o5XNZk2Q_9a0nsxAD';
+            var EDGE_FUNCTION_URL = 'https://fxmsbynbgwlwtekxqmak.supabase.co/functions/v1';
+            var domain = window.location.hostname;
+            var headers = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY };
 
-  /* Inclui o path para diferenciar /grupo das demais páginas.
-     Cadastre no Supabase como: seudominio.com/grupo             */
-  var path   = window.location.pathname.replace(/\/+$/, '') || '';
-  var domain = window.location.hostname + path;
+            // --- Pixels ---
+            fetch(SUPABASE_URL + '/rest/v1/pixels?active=eq.true&domain=eq.' + encodeURIComponent(domain) + '&select=platform,pixel_id', { headers: headers })
+                .then(function (r) { return r.json(); })
+                .then(function (pixels) {
+                    pixels.forEach(function (p) {
+                        switch (p.platform) {
+                            case 'facebook':
+                                !function (f, b, e, v, n, t, s) {
+                                    if (f.fbq) return; n = f.fbq = function () {
+                                        n.callMethod ?
+                                            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                                    }; if (!f._fbq) f._fbq = n;
+                                    n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+                                    t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+                                }
+                                    (window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                                fbq('init', p.pixel_id); fbq('track', 'PageView');
+                                break;
+                            case 'google_analytics':
+                                var gs = document.createElement('script'); gs.async = true;
+                                gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + p.pixel_id;
+                                document.head.appendChild(gs);
+                                window.dataLayer = window.dataLayer || [];
+                                function gtag() { dataLayer.push(arguments); }
+                                gtag('js', new Date()); gtag('config', p.pixel_id);
+                                break;
+                            case 'google_tag_manager':
+                                (function (w, d, s, l, i) {
+                                    w[l] = w[l] || []; w[l].push({
+                                        'gtm.start':
+                                            new Date().getTime(), event: 'gtm.js'
+                                    }); var f = d.getElementsByTagName(s)[0],
+                                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true;
+                                    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                                    f.parentNode.insertBefore(j, f);
+                                })(window, document, 'script', 'dataLayer', p.pixel_id);
+                                break;
+                            case 'tiktok':
+                                !function (w, d, t) {
+                                    w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+                                    ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"];
+                                    ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+                                    for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]);
+                                    ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e };
+                                    ttq.load = function (e, n) {
+                                        var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+                                        ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = i; ttq._t = ttq._t || {}; ttq._t[e + "_" + n] = 1;
+                                        var o = document.createElement("script"); o.type = "text/javascript"; o.async = !0; o.src = i + "?sdkid=" + e + "&lib=" + t;
+                                        var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a)
+                                    };
+                                    ttq.load(p.pixel_id); ttq.page();
+                                }(window, document, 'ttq');
+                                break;
+                            case 'custom':
+                                var cs = document.createElement('script'); cs.async = true;
+                                cs.src = p.pixel_id; document.head.appendChild(cs);
+                                break;
+                        }
+                    });
+                });
 
-  fetch(SUPABASE_URL + '/rest/v1/pixels?active=eq.true&domain=eq.' + encodeURIComponent(domain) + '&select=platform,pixel_id', {
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY
-    }
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(pixels){
-    pixels.forEach(function(p){
-      switch(p.platform){
-        case 'facebook':
-          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-          (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', p.pixel_id); fbq('track', 'PageView');
-          break;
-        case 'google_analytics':
-          var gs=document.createElement('script');gs.async=true;
-          gs.src='https://www.googletagmanager.com/gtag/js?id='+p.pixel_id;
-          document.head.appendChild(gs);
-          window.dataLayer=window.dataLayer||[];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js',new Date());gtag('config',p.pixel_id);
-          break;
-        case 'google_tag_manager':
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-          j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-          f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',p.pixel_id);
-          break;
-        case 'tiktok':
-          !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
-          ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];
-          ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
-          for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-          ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
-          ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";
-          ttq._i=ttq._i||{};ttq._i[e]=[];ttq._i[e]._u=i;ttq._t=ttq._t||{};ttq._t[e+"_"+n]=1;
-          var o=document.createElement("script");o.type="text/javascript";o.async=!0;o.src=i+"?sdkid="+e+"&lib="+t;
-          var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-          ttq.load(p.pixel_id);ttq.page();}(window,document,'ttq');
-          break;
-        case 'custom':
-          var cs=document.createElement('script');cs.async=true;
-          cs.src=p.pixel_id;document.head.appendChild(cs);
-          break;
-      }
-    });
-  });
-})();
-</script>
+            // --- WhatsApp/Telegram Link Interceptor ---
+            fetch(SUPABASE_URL + '/rest/v1/sites?active=eq.true&domain=eq.' + encodeURIComponent(domain) + '&select=id', { headers: headers })
+                .then(function (r) { return r.json(); })
+                .then(function (sites) {
+                    if (!sites || !sites.length) return;
+                    var siteId = sites[0].id;
+                    var redirectBase = EDGE_FUNCTION_URL + '/whatsapp-redirect?siteId=' + siteId;
+
+                    function isGroupLink(href) {
+                        if (!href) return false;
+                        return href.indexOf('wa.me') !== -1 ||
+                            href.indexOf('api.whatsapp.com') !== -1 ||
+                            href.indexOf('whatsapp.com') !== -1 ||
+                            href.indexOf('chat.whatsapp.com') !== -1 ||
+                            href.indexOf('t.me') !== -1 ||
+                            href.indexOf('telegram.me') !== -1;
+                    }
+
+                    function interceptLinks() {
+                        var allLinks = document.querySelectorAll('a[href]');
+                        allLinks.forEach(function (el) {
+                            if (el.__pmWaIntercepted) return;
+                            if (isGroupLink(el.href)) {
+                                el.__pmWaIntercepted = true;
+                                el.addEventListener('click', function (e) {
+                                    e.preventDefault();
+                                    var redirectUrl = redirectBase + '&original=' + encodeURIComponent(el.href) + '&page=' + encodeURIComponent(window.location.href);
+                                    window.open(redirectUrl, '_blank', 'noopener');
+                                });
+                            }
+                        });
+                    }
+
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', interceptLinks);
+                    } else {
+                        interceptLinks();
+                    }
+
+                    if (typeof MutationObserver !== 'undefined') {
+                        var observer = new MutationObserver(function () { interceptLinks(); });
+                        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+                    }
+                });
+        })();
+    </script>
 
     <style>
         /* ======================================================
            RESET & BASE
         ====================================================== */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -99,13 +154,14 @@
             --green-dark: #99CC00;
             --black: #000000;
             --panel: #111111;
-            --panel-border: rgba(255,255,255,0.08);
+            --panel-border: rgba(255, 255, 255, 0.08);
             --text-white: #FFFFFF;
             --text-muted: #AAAAAA;
             --font: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -118,7 +174,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         /* ======================================================
            TICKER
@@ -129,7 +188,7 @@
             left: 0;
             width: 100%;
             background: rgba(10, 10, 12, 0.55);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding: 9px 0;
             z-index: 100;
             overflow: hidden;
@@ -165,14 +224,27 @@
             gap: 2px;
         }
 
-        .ticker-item .up   { color: var(--green); }
-        .ticker-item .down { color: #FF3333; }
+        .ticker-item .up {
+            color: var(--green);
+        }
 
-        .ticker-item i { width: 13px; height: 13px; }
+        .ticker-item .down {
+            color: #FF3333;
+        }
+
+        .ticker-item i {
+            width: 13px;
+            height: 13px;
+        }
 
         @keyframes ticker-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* ======================================================
@@ -213,8 +285,15 @@
         }
 
         @keyframes bounce-arrow {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(6px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
         }
 
         /* ======================================================
@@ -246,13 +325,11 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.20) 0%,
-                rgba(0,0,0,0.50) 40%,
-                rgba(0,0,0,0.92) 75%,
-                rgba(0,0,0,1.00) 100%
-            );
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.20) 0%,
+                    rgba(0, 0, 0, 0.50) 40%,
+                    rgba(0, 0, 0, 0.92) 75%,
+                    rgba(0, 0, 0, 1.00) 100%);
             z-index: 1;
         }
 
@@ -279,8 +356,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(204,255,0,0.15);
-            border: 1px solid rgba(204,255,0,0.4);
+            background: rgba(204, 255, 0, 0.15);
+            border: 1px solid rgba(204, 255, 0, 0.4);
             border-radius: 50px;
             padding: 6px 16px;
             font-size: 0.72rem;
@@ -300,8 +377,15 @@
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
         }
 
         .hero-title {
@@ -309,7 +393,7 @@
             font-weight: 900;
             line-height: 1.15;
             letter-spacing: -0.5px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
         .hero-title .green {
@@ -331,8 +415,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(204,255,0,0.08);
-            border: 1px solid rgba(204,255,0,0.25);
+            background: rgba(204, 255, 0, 0.08);
+            border: 1px solid rgba(204, 255, 0, 0.25);
             border-radius: 14px;
             padding: 14px 22px;
             width: 100%;
@@ -382,7 +466,7 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 0 30px rgba(204,255,0,0.4), 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.4), 0 8px 25px rgba(0, 0, 0, 0.4);
             animation: pulse-cta 2s ease-in-out infinite;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             text-decoration: none;
@@ -390,7 +474,7 @@
 
         .btn-cta:hover {
             transform: scale(1.04);
-            box-shadow: 0 0 45px rgba(204,255,0,0.6), 0 12px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 0 45px rgba(204, 255, 0, 0.6), 0 12px 35px rgba(0, 0, 0, 0.5);
             animation: none;
         }
 
@@ -401,8 +485,17 @@
         }
 
         @keyframes pulse-cta {
-            0%, 100% { transform: scale(1);     box-shadow: 0 0 30px rgba(204,255,0,0.4), 0 8px 25px rgba(0,0,0,0.4); }
-            50%       { transform: scale(1.03);  box-shadow: 0 0 50px rgba(204,255,0,0.65), 0 12px 30px rgba(0,0,0,0.5); }
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(204, 255, 0, 0.4), 0 8px 25px rgba(0, 0, 0, 0.4);
+            }
+
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 0 50px rgba(204, 255, 0, 0.65), 0 12px 30px rgba(0, 0, 0, 0.5);
+            }
         }
 
         .cta-hint {
@@ -477,7 +570,7 @@
             left: 0;
             right: 0;
             padding: 18px 20px 16px;
-            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
             font-size: 0.85rem;
             font-weight: 600;
             color: #fff;
@@ -540,8 +633,8 @@
             transform: translateY(-50%);
             width: 40px;
             height: 40px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             cursor: pointer;
             display: flex;
@@ -552,11 +645,23 @@
             color: #fff;
         }
 
-        .carousel-btn:hover { background: rgba(204,255,0,0.2); border-color: var(--green); }
-        .carousel-btn.prev { left: 12px; }
-        .carousel-btn.next { right: 12px; }
+        .carousel-btn:hover {
+            background: rgba(204, 255, 0, 0.2);
+            border-color: var(--green);
+        }
 
-        .carousel-btn svg { width: 18px; height: 18px; }
+        .carousel-btn.prev {
+            left: 12px;
+        }
+
+        .carousel-btn.next {
+            right: 12px;
+        }
+
+        .carousel-btn svg {
+            width: 18px;
+            height: 18px;
+        }
 
         /* Dots */
         .carousel-dots {
@@ -569,7 +674,7 @@
         .dot {
             width: 8px;
             height: 8px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             cursor: pointer;
             transition: background 0.3s, transform 0.3s;
@@ -595,20 +700,22 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--panel-border);
             border-radius: 14px;
             padding: 18px 20px;
             transition: border-color 0.3s;
         }
 
-        .feature-item:hover { border-color: rgba(204,255,0,0.25); }
+        .feature-item:hover {
+            border-color: rgba(204, 255, 0, 0.25);
+        }
 
         .feature-icon {
             width: 42px;
             height: 42px;
-            background: rgba(204,255,0,0.1);
-            border: 1px solid rgba(204,255,0,0.2);
+            background: rgba(204, 255, 0, 0.1);
+            border: 1px solid rgba(204, 255, 0, 0.2);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -642,8 +749,8 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            background: rgba(204,255,0,0.06);
-            border: 1px solid rgba(204,255,0,0.2);
+            background: rgba(204, 255, 0, 0.06);
+            border: 1px solid rgba(204, 255, 0, 0.2);
             border-radius: 16px;
             padding: 18px 20px;
             margin-bottom: 40px;
@@ -711,7 +818,7 @@
 
         .page-footer p {
             font-size: 0.72rem;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255, 255, 255, 0.25);
             max-width: 480px;
             margin: 0 auto;
             line-height: 1.6;
@@ -730,19 +837,27 @@
            RESPONSIVE
         ====================================================== */
         @media (max-width: 480px) {
-            .hero-title { font-size: 1.45rem; }
-            .section { padding: 50px 20px; }
+            .hero-title {
+                font-size: 1.45rem;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
             .hero {
                 justify-content: center;
                 padding-top: 80px;
                 padding-bottom: 40px;
             }
+
             .btn-cta {
                 font-size: 0.78rem;
                 padding: 16px 18px;
                 gap: 7px;
                 white-space: nowrap;
             }
+
             .btn-cta svg {
                 width: 16px;
                 height: 16px;
@@ -750,9 +865,14 @@
         }
 
         @media (min-width: 768px) {
-            .hero-title { font-size: 2.4rem; }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
             .carousel-slide img,
-            .carousel-slide video { max-height: 680px; }
+            .carousel-slide video {
+                max-height: 680px;
+            }
         }
     </style>
 </head>
@@ -763,22 +883,36 @@
     <div class="trading-ticker">
         <div class="ticker-track">
             <div class="ticker-content">
-                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945 (+0.12%)</strong></span>
-                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530 (-0.05%)</strong></span>
-                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20 (+0.30%)</strong></span>
-                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515 (+0.18%)</strong></span>
-                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490 (-0.22%)</strong></span>
-                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00 (+1.45%)</strong></span>
-                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15 (+2.10%)</strong></span>
+                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945
+                        (+0.12%)</strong></span>
+                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530
+                        (-0.05%)</strong></span>
+                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20
+                        (+0.30%)</strong></span>
+                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515
+                        (+0.18%)</strong></span>
+                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490
+                        (-0.22%)</strong></span>
+                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00
+                        (+1.45%)</strong></span>
+                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15
+                        (+2.10%)</strong></span>
             </div>
             <div class="ticker-content">
-                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945 (+0.12%)</strong></span>
-                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530 (-0.05%)</strong></span>
-                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20 (+0.30%)</strong></span>
-                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515 (+0.18%)</strong></span>
-                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490 (-0.22%)</strong></span>
-                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00 (+1.45%)</strong></span>
-                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15 (+2.10%)</strong></span>
+                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945
+                        (+0.12%)</strong></span>
+                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530
+                        (-0.05%)</strong></span>
+                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20
+                        (+0.30%)</strong></span>
+                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515
+                        (+0.18%)</strong></span>
+                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490
+                        (-0.22%)</strong></span>
+                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00
+                        (+1.45%)</strong></span>
+                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15
+                        (+2.10%)</strong></span>
             </div>
         </div>
     </div>
@@ -803,11 +937,12 @@
             </h1>
 
             <div class="counter-box">
-                <svg class="counter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                <svg class="counter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
                 <div class="counter-text">
                     <div class="counter-number">Sinais diários · Price Action puro · Sem robôs</div>
@@ -816,17 +951,20 @@
             </div>
 
             <a href="https://chat.whatsapp.com/EFSGCz2JFNXCxJVPmu6kZm" target="_blank" class="btn-cta"
-               onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Hero'})">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z"/>
+                onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Hero'})">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z" />
                 </svg>
                 Entrar no Grupo VIP Agora
             </a>
 
             <p class="cta-hint">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;vertical-align:middle;margin-right:4px">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" style="width:12px;height:12px;vertical-align:middle;margin-right:4px">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
                 Acesso imediato via WhatsApp · Sem cartão de crédito
             </p>
@@ -842,9 +980,10 @@
         <div class="social-proof-number">289+</div>
         <p class="social-proof-text">pessoas já lucraram usando esses sinais</p>
         <div class="social-proof-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <polyline points="19 12 12 19 5 12"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
             </svg>
         </div>
     </div>
@@ -852,9 +991,10 @@
     <div class="section">
         <h2 class="section-title">Resultados <span class="green">Reais</span></h2>
         <p class="section-subtitle">Membros do grupo enviando os lucros toda semana
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;vertical-align:middle;margin-left:2px">
-                <line x1="12" y1="5" x2="12" y2="19"/>
-                <polyline points="19 12 12 19 5 12"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="width:14px;height:14px;vertical-align:middle;margin-left:2px">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
             </svg>
         </p>
 
@@ -883,10 +1023,13 @@
                 </div>
                 <div class="carousel-slide">
                     <video playsinline preload="metadata">
-                        <source src="../assets/provasgrupo/WhatsApp%20Video%202025-08-18%20at%2016.33.16.MOV" type="video/mp4">
+                        <source src="../assets/provasgrupo/WhatsApp%20Video%202025-08-18%20at%2016.33.16.MOV"
+                            type="video/mp4">
                     </video>
                     <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
                     </button>
                     <div class="carousel-slide-label">
                         <span class="profit">Vídeo · Ao Vivo</span><br>
@@ -895,10 +1038,13 @@
                 </div>
                 <div class="carousel-slide">
                     <video playsinline preload="metadata">
-                        <source src="../assets/provasgrupo/WhatsApp%20Video%202025-08-18%20at%2018.53.33.mp4" type="video/mp4">
+                        <source src="../assets/provasgrupo/WhatsApp%20Video%202025-08-18%20at%2018.53.33.mp4"
+                            type="video/mp4">
                     </video>
                     <button class="video-play-btn" aria-label="Reproduzir vídeo">
-                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
                     </button>
                     <div class="carousel-slide-label">
                         <span class="profit">Vídeo · Resultado</span><br>
@@ -908,13 +1054,15 @@
             </div>
 
             <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
                 </svg>
             </button>
             <button class="carousel-btn next" id="nextBtn" aria-label="Próximo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
                 </svg>
             </button>
         </div>
@@ -934,7 +1082,13 @@
         <div class="features-list">
             <div class="feature-item">
                 <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                        <line x1="12" y1="20" x2="12.01" y2="20" />
+                    </svg>
                 </div>
                 <div class="feature-text">
                     <h4>Sinais Diários no WhatsApp</h4>
@@ -943,7 +1097,12 @@
             </div>
             <div class="feature-item">
                 <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
                 </div>
                 <div class="feature-text">
                     <h4>Análises de Price Action</h4>
@@ -952,7 +1111,10 @@
             </div>
             <div class="feature-item">
                 <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
                 </div>
                 <div class="feature-text">
                     <h4>Gestão de Banca</h4>
@@ -961,7 +1123,12 @@
             </div>
             <div class="feature-item">
                 <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="2" />
+                    </svg>
                 </div>
                 <div class="feature-text">
                     <h4>Suporte 1 a 1</h4>
@@ -970,7 +1137,11 @@
             </div>
             <div class="feature-item">
                 <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
                 </div>
                 <div class="feature-text">
                     <h4>Histórico de Win Rate</h4>
@@ -994,10 +1165,12 @@
 
         <!-- CTA repetido -->
         <a href="https://chat.whatsapp.com/EFSGCz2JFNXCxJVPmu6kZm" target="_blank" class="btn-cta"
-           style="max-width:100%; animation-delay:0.5s;"
-           onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Features'})">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z"/>
+            style="max-width:100%; animation-delay:0.5s;"
+            onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Features'})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" style="width:18px;height:18px">
+                <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z" />
             </svg>
             Quero Entrar no Grupo VIP
         </a>
@@ -1017,10 +1190,10 @@
     ============================================================ -->
     <script>
         /* ---------- Carousel ---------- */
-        const track  = document.getElementById('carouselTrack');
+        const track = document.getElementById('carouselTrack');
         const dotsEl = document.getElementById('carouselDots');
         const slides = track.querySelectorAll('.carousel-slide');
-        let current  = 0;
+        let current = 0;
         let autoplay;
 
         // Criar dots
@@ -1066,18 +1239,19 @@
         lucide.createIcons();
 
         // Bloqueia pinch-to-zoom em todos os browsers mobile
-        document.addEventListener('touchmove', function(e) {
+        document.addEventListener('touchmove', function (e) {
             if (e.touches.length > 1) e.preventDefault();
         }, { passive: false });
 
-        document.addEventListener('gesturestart', function(e) {
+        document.addEventListener('gesturestart', function (e) {
             e.preventDefault();
         }, { passive: false });
 
-        document.addEventListener('gesturechange', function(e) {
+        document.addEventListener('gesturechange', function (e) {
             e.preventDefault();
         }, { passive: false });
     </script>
 
 </body>
+
 </html>
