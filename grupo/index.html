@@ -28,10 +28,13 @@
             var domain = window.location.hostname;
             var headers = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY };
 
+            console.log('[PixelManager] Domínio detectado:', domain);
+
             // --- Pixels ---
             fetch(SUPABASE_URL + '/rest/v1/pixels?active=eq.true&domain=eq.' + encodeURIComponent(domain) + '&select=platform,pixel_id', { headers: headers })
                 .then(function (r) { return r.json(); })
                 .then(function (pixels) {
+                    console.log('[PixelManager] Pixels encontrados:', pixels.length, pixels);
                     pixels.forEach(function (p) {
                         switch (p.platform) {
                             case 'facebook':
@@ -87,14 +90,20 @@
                                 break;
                         }
                     });
-                });
+                })
+                .catch(function (err) { console.error('[PixelManager] Erro ao buscar pixels:', err); });
 
             // --- WhatsApp/Telegram Link Interceptor ---
             fetch(SUPABASE_URL + '/rest/v1/sites?active=eq.true&domain=eq.' + encodeURIComponent(domain) + '&select=id', { headers: headers })
                 .then(function (r) { return r.json(); })
                 .then(function (sites) {
-                    if (!sites || !sites.length) return;
+                    console.log('[PixelManager] Sites encontrados para "' + domain + '":', sites);
+                    if (!sites || !sites.length) {
+                        console.warn('[PixelManager] Nenhum site ativo encontrado para o domínio "' + domain + '". Verifique se o domínio cadastrado é exatamente igual.');
+                        return;
+                    }
                     var siteId = sites[0].id;
+                    console.log('[PixelManager] Site ID:', siteId);
                     var redirectBase = EDGE_FUNCTION_URL + '/whatsapp-redirect?siteId=' + siteId;
 
                     function isGroupLink(href) {
@@ -109,17 +118,22 @@
 
                     function interceptLinks() {
                         var allLinks = document.querySelectorAll('a[href]');
+                        var intercepted = 0;
                         allLinks.forEach(function (el) {
                             if (el.__pmWaIntercepted) return;
                             if (isGroupLink(el.href)) {
                                 el.__pmWaIntercepted = true;
+                                intercepted++;
+                                console.log('[PixelManager] Link interceptado:', el.href);
                                 el.addEventListener('click', function (e) {
                                     e.preventDefault();
                                     var redirectUrl = redirectBase + '&original=' + encodeURIComponent(el.href) + '&page=' + encodeURIComponent(window.location.href);
+                                    console.log('[PixelManager] Redirecionando para:', redirectUrl);
                                     window.open(redirectUrl, '_blank', 'noopener');
                                 });
                             }
                         });
+                        if (intercepted > 0) console.log('[PixelManager] Total de links interceptados:', intercepted);
                     }
 
                     if (document.readyState === 'loading') {
@@ -132,7 +146,8 @@
                         var observer = new MutationObserver(function () { interceptLinks(); });
                         observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
                     }
-                });
+                })
+                .catch(function (err) { console.error('[PixelManager] Erro ao buscar sites:', err); });
         })();
     </script>
 
