@@ -119,24 +119,36 @@
                             href.indexOf('telegram.me') !== -1;
                     }
 
+                    function getGroupUrl(el) {
+                        var href = el.getAttribute('href') || el.getAttribute('data-href') || '';
+                        if (isGroupLink(href)) return href;
+                        var onclick = el.getAttribute('onclick') || '';
+                        var match = onclick.match(/(https?:\/\/(?:wa\.me|api\.whatsapp\.com|whatsapp\.com|chat\.whatsapp\.com|t\.me|telegram\.me)[^"'\s)]*)/i);
+                        if (match) return match[1];
+                        var parent = el.closest('a[href]');
+                        if (parent && isGroupLink(parent.getAttribute('href'))) return parent.getAttribute('href');
+                        return null;
+                    }
+
                     function interceptLinks() {
-                        var allLinks = document.querySelectorAll('a[href]');
+                        var allElements = document.querySelectorAll('a[href], button, [onclick], [data-href], [role="button"], [role="link"]');
                         var intercepted = 0;
-                        allLinks.forEach(function (el) {
+                        allElements.forEach(function (el) {
                             if (el.__pmWaIntercepted) return;
-                            if (isGroupLink(el.href)) {
-                                el.__pmWaIntercepted = true;
-                                intercepted++;
-                                console.log('[PixelManager] Link interceptado:', el.href);
-                                el.addEventListener('click', function (e) {
-                                    e.preventDefault();
-                                    var redirectUrl = redirectBase + '&original=' + encodeURIComponent(el.href) + '&page=' + encodeURIComponent(window.location.href);
-                                    console.log('[PixelManager] Redirecionando para:', redirectUrl);
-                                    window.open(redirectUrl, '_blank', 'noopener');
-                                });
-                            }
+                            var groupUrl = getGroupUrl(el);
+                            if (!groupUrl) return;
+                            el.__pmWaIntercepted = true;
+                            intercepted++;
+                            console.log('[PixelManager] Elemento interceptado:', el.tagName, groupUrl);
+                            el.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                var redirectUrl = redirectBase + '&original=' + encodeURIComponent(groupUrl) + '&page=' + encodeURIComponent(window.location.href);
+                                console.log('[PixelManager] Redirecionando para:', redirectUrl);
+                                window.open(redirectUrl, '_blank', 'noopener');
+                            });
                         });
-                        if (intercepted > 0) console.log('[PixelManager] Total de links interceptados:', intercepted);
+                        if (intercepted > 0) console.log('[PixelManager] Total interceptados:', intercepted);
                     }
 
                     if (document.readyState === 'loading') {
