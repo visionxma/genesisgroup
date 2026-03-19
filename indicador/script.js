@@ -47,6 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
 
+        // Fechar ao clicar no botão X
+        const menuClose = document.getElementById('menuClose');
+        if (menuClose) {
+            menuClose.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        }
+
         // Fechar ao clicar em link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
