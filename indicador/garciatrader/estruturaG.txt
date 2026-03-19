@@ -1,0 +1,307 @@
+# 🔷 NAVEGAÇÃO (Header)
+
+**Logo:** INDICADOR GARCIA
+
+**Menu:**
+- Início
+- Benefícios
+- Depoimentos
+- Sobre
+- Lives
+- **[Botão CTA]** COMPRAR AGORA | R$20 | COMPRAR
+
+---
+
+# 🔷 SEÇÃO 1 — HERO (Banner Principal)
+
+**Headline:**
+> O ÚNICO indicador com **95% de assertividade** que transforma **QUALQUER PESSOA** em trader lucrativo
+
+**Subtítulo:**
+> Chega de tomar loss tentando adivinhar entradas, com o indicador você elimina suas chances de erro.
+
+**Social Proof:**
+> Validado por mais de **8.200 traders ativos** na comunidade do Telegram
+
+**Oferta:**
+> PROMOÇÃO: De R$97 por apenas **R$20** (por tempo limitado)
+
+**[Botão CTA]:**
+> QUERO LUCRAR COM
+> **95% DE ASSERTIVIDADE**
+
+**Selos de confiança:**
+> ⚡ Acesso imediato • 🔒 100% Seguro • 💰 Garantia de 7 dias
+
+---
+
+# 🔷 SEÇÃO 2 — RESULTADOS REAIS
+
+**Título:** Resultados Reais dos Nossos Alunos
+**Subtítulo:** Veja os prints de lucros reais
+
+**Depoimento em destaque:**
+> **Trader Bruno** — 6 wins seguidos de +R$100 cada — *"Esse indicador é brabo demais!"*
+
+*(Carrossel de imagens com prints: Trader Bruno, Trader Diego, Trader Felipe)*
+> ⏸ Clique para pausar
+
+---
+
+# 🔷 SEÇÃO 3 — BENEFÍCIOS
+
+**Título:** Por que escolher nosso indicador?
+**Subtítulo:** Tudo que você precisa para ter sucesso no trading
+
+**Card 1 — 95% Assertividade**
+> Taxa comprovada em mercado real com mais de 1000 operações testadas
+
+**Card 2 — Sinais Instantâneos**
+> Alertas sonoros e visuais no momento exato da oportunidade
+
+**Card 3 — Gestão de Risco**
+> Stop loss automático e gerenciamento inteligente do capital
+
+**Card 4 — Suporte Total**
+> Comunidade ativa, lives diárias e suporte via WhatsApp
+
+**Card 5 — Compatibilidade Total**
+- ✓ Avalon, IQ Option, Quotex
+- ✓ Pocket Option, Bullex
+- ✓ Todas as corretoras que aceitam scripts
+- ✓ Instalação em 5 minutos
+
+**Card 6 — Recursos Inclusos**
+- ✓ Script profissional para instalação
+- ✓ Manual de instalação completo
+- ✓ Vídeo-aulas de configuração
+- ✓ Suporte para instalação personalizada
+
+---
+
+# 🔷 SEÇÃO 4 — DEMONSTRAÇÃO DO INDICADOR
+
+**Título:** Veja o Indicador em Ação
+**Subtítulo:** Interface real e sinais precisos na sua tela
+
+**Item 1:**
+> **Interface Limpa e Intuitiva**
+> Sinais claros e fáceis de interpretar
+
+**Item 2:**
+> **Sinais Precisos em Tempo Real**
+> Alertas no momento exato da entrada
+
+**Frase de prova social:**
+> **Mais de 8.200 traders** já estão usando e aprovando!
+
+---
+
+# 🔷 SEÇÃO 5 — DEPOIMENTOS
+
+**Título:** O Que Nossos Alunos Estão Dizendo
+**Subtítulo:** Depoimentos reais de quem transformou sua vida financeira
+
+---
+
+**👤 Carlos Silva**
+> "Cara, vou ser sincero com vocês. Eu estava completamente quebrado depois de perder R$ 3.000 com outros métodos que prometiam o mundo. Quando vi o indicador do Garcia por R$ 20, minha primeira reação foi: 'deve ser furada, muito barato'. Mas estava desesperado, era literalmente meu último dinheiro. Resolvi testar... Mano, em 15 dias não só recuperei tudo como ainda lucrei R$ 2.400! Hoje entendo por que o Garcia cobra pouco - ele quer que todo mundo tenha acesso. O cara é diferenciado mesmo, não é ganancioso como os outros. Se você está na dúvida como eu estava, vai fundo que é sério!"
+
+**Resultado: R$ 8.500 em 2 meses**
+
+---
+
+**👤 Roberto Lima**
+> "Trabalho de Uber e precisava de renda extra. R$ 20 é o valor de uma corrida, pensei. Melhor investimento da vida! Agora faço mais com o indicador do que dirigindo o dia todo."
+
+**Resultado: R$ 4.200 por mês**
+
+---
+
+**👤 Marina Costa**
+> "Sou mãe solteira e R$ 20 era tudo que sobrava no final do mês. Estava desesperada por uma renda extra pra sustentar minha filha. O Garcia me acolheu no grupo, me deu todo suporte nas lives, me ensinou com paciência. Hoje consigo dar uma vida digna pra minha pequena. Ele cobra barato porque tem coração, quer ajudar as pessoas de verdade. Sou eternamente grata! 🙏"
+
+**Resultado: R$ 2.800 por mês**
+
+---
+
+# 🔷 SEÇÃO 6 — SOBRE O GARCIA
+
+**Badge:** EXPERT EM OPÇÕES BINÁRIAS
+
+**Título:** Conheça o Garcia
+
+**Texto:**
+> Com mais de 5 anos de experiência no mercado financeiro, Garcia desenvolveu uma metodologia única que já transformou a vida de milhares de pessoas. Sua missão é democratizar o acesso ao trading lucrativo.
+
+**Credenciais:**
+- +8.200 alunos ativos
+- 95% de assertividade comprovada
+- Especialista em análise técnica
+- Mentor de traders profissionais
+
+---
+
+# 🔷 SEÇÃO 7 — LIVES (Aulas Ao Vivo)
+
+**Título:** Aulas AO VIVO com o Indicador
+**Subtítulo:** Aprenda a usar o indicador na prática e multiplique seus lucros
+
+---
+
+**📌 Bloco: Operações AO VIVO**
+> Com o indicador funcionando
+
+- Veja o indicador gerando sinais em tempo real
+- Aprenda a interpretar cada sinal corretamente
+- Entenda os gatilhos de entrada e saída
+- Análise de gráficos e confluências
+- Tire suas dúvidas sobre o indicador
+
+---
+
+**📌 Bloco: Ensino Prático**
+> 8.200+ Alunos Aprendendo
+
+- Como configurar o indicador perfeitamente
+- Estratégias para alcançar 95% de assertividade
+- Gestão de banca e multiplicação de lucros
+- Leitura avançada de gráficos
+- Suporte para instalação e dúvidas
+
+---
+
+**📅 Programação Diária de Ensino**
+
+| Horário | Período | Conteúdo |
+|---------|---------|----------|
+| 10:00 | MANHÃ | Operações com indicador / Análise de gráficos |
+| 15:30 | ALAVANCAGEM | Estratégias avançadas / Multiplicação de banca |
+| 20:00 | NOITE | Operações com indicador / Tirando dúvidas |
+
+> 🎯 Todas as lives focam no uso prático do indicador para maximizar seus lucros
+
+---
+
+**🚀 Live Especial: Alavancagem com Indicador**
+- Live exclusiva às 15:30 todos os dias
+- Técnicas para multiplicar lucros com o indicador
+- Estratégias de gestão de banca avançadas
+- Sinais de alta probabilidade em tempo real
+
+> **15:30** | Segunda a Sexta | Horário especial para alavancagem
+
+---
+
+# 🔷 SEÇÃO 8 — OFERTA / PREÇO
+
+**Título:** Indicador Garcia Trader
+**Subtítulo:** Acesso Completo + Bônus
+
+**O que está incluso:**
+- 95% de Assertividade comprovada
+- Funciona 24h - mercado aberto e fechado
+- Sinais em tempo real com alertas sonoros
+- Suporte completo para instalação
+- Lives AO VIVO de segunda a sexta
+- Comunidade Trader com 8.200+ alunos
+- Manual + vídeo-aulas de instalação
+- Garantia de 7 dias - risco zero!
+
+**Preço:**
+> ~~R$97~~ → **R$20**
+> Pagamento único - Sem mensalidades
+
+**[Botão CTA]:** GARANTIR MINHA VAGA AGORA!
+
+> 🚀 Você recebe o indicador no mesmo minuto da compra no seu e-mail
+
+---
+
+**🔒 Garantia de 7 Dias — RISCO ZERO!**
+
+> Teste o indicador por 7 dias completos. Se não ficar 100% satisfeito com os resultados, devolvemos todo o seu dinheiro sem fazer perguntas.
+
+- **7 Dias Completos** — Tempo suficiente para testar e aprovar
+- **100% do Dinheiro** — Reembolso total garantido
+- **Sem Perguntas** — Processo simples e rápido
+
+> 💡 **Dica:** A maioria dos nossos alunos vê resultados já nos primeiros dias!
+
+---
+
+# 🔷 SEÇÃO 9 — PERGUNTAS FREQUENTES
+
+**Título:** Perguntas Frequentes
+**Subtítulo:** Tire todas suas dúvidas sobre o indicador
+
+---
+
+**❓ Por que o indicador custa apenas R$ 20? Não é muito barato?**
+> Excelente pergunta! O Garcia poderia cobrar R$ 500, R$ 1000 como outros 'gurus'. Mas ele tem uma missão: democratizar o acesso ao trading lucrativo. Ele prefere ter 10.000 alunos pagando R$ 20 do que 100 pagando R$ 2000. Além disso, quanto mais pessoas lucrando, mais forte fica nossa comunidade. É uma estratégia inteligente de negócio com propósito social.
+
+**❓ O indicador funciona em qualquer corretora?**
+> Sim! O indicador funciona em todas as corretoras que aceitam scripts personalizados, como Avalon, IQ Option, Quotex, Pocket Option, Bullex e outras. É um script profissional que se integra diretamente à plataforma da sua corretora. Enviamos uma lista completa de corretoras compatíveis após a compra.
+
+**❓ Preciso ter experiência em trading?**
+> Não é necessário! O indicador foi desenvolvido especialmente para iniciantes. Os sinais são claros e fáceis de seguir, com instruções passo a passo. Além disso, você terá acesso às lives diárias onde o Garcia ensina tudo na prática.
+
+**❓ Como recebo o indicador após a compra?**
+> Você recebe o indicador imediatamente no seu e-mail após a confirmação do pagamento, junto com o manual de instalação completo, vídeo-aulas de configuração e acesso ao grupo VIP no Telegram.
+
+**❓ Tem garantia? Como funciona?**
+> Sim! Oferecemos 7 dias de garantia incondicional. Se não ficar 100% satisfeito com os resultados, devolvemos todo o seu dinheiro sem fazer perguntas. Basta enviar um e-mail solicitando o reembolso.
+
+**❓ Como funciona o suporte?**
+> Oferecemos suporte completo através do grupo VIP no Telegram (8.200+ membros ativos), lives ao vivo de segunda a sexta às 19h, e atendimento direto via WhatsApp. Você nunca ficará desamparado.
+
+**❓ O indicador funciona 24 horas?**
+> Sim! O indicador funciona tanto no mercado aberto quanto fechado, 24 horas por dia. Os sinais são gerados automaticamente sempre que há uma oportunidade de entrada.
+
+**❓ Quantas operações por dia o indicador gera?**
+> O indicador funciona 24 horas por dia e gera múltiplos sinais durante todo o período. Em dias de alta volatilidade, podem ser dezenas de oportunidades. Você não precisa ficar o dia todo na frente do computador - os alertas sonoros te avisam quando há oportunidade.
+
+**❓ Posso usar em conta demo primeiro?**
+> Claro! Recomendamos que teste primeiro em conta demo para se familiarizar com o indicador. Depois que ganhar confiança, pode migrar para conta real. O indicador funciona igual em ambas.
+
+**❓ E se eu não souber instalar?**
+> Sem problemas! Enviamos um manual detalhado, vídeo passo a passo e oferecemos suporte personalizado para instalação. Se ainda assim tiver dificuldades, nossa equipe instala remotamente para você.
+
+**"Ainda tem dúvidas?"**
+> **[Botão]:** ENTRAR NA COMUNIDADE
+
+---
+
+# 🔷 RODAPÉ (Footer)
+
+**Logo:** INDICADOR GARCIA
+
+> Transformando iniciantes em traders lucrativos desde 2019.
+> Mais de 8.200 alunos ativos • 95% de assertividade comprovada
+
+**Links Rápidos:**
+- Início
+- Benefícios
+- Depoimentos
+- Lives
+- Comprar
+
+**Suporte:**
+- Comunidade Telegram
+- 8.200+ membros ativos *(link: https://go.perfectpay.com.br/PPU38CQ93LA)*
+- Termos de Uso
+- Política de Privacidade
+
+---
+
+> © 2024 Garcia Trader. Todos os direitos reservados.
+>
+> **Aviso Legal:** Os resultados passados não garantem resultados futuros. Trading envolve riscos e você pode perder parte ou todo seu capital investido. Recomendamos sempre começar com conta demo.
+
+---
+
+# 🔷 BARRA FLUTUANTE (Bottom Bar)
+
+> BENEFÍCIOS | LIVES | COMPRAR | COMUNIDADE
+
+**Banner animado:** ÚLTIMAS VAGAS DISPONÍVEIS - GARANTE JÁ!
