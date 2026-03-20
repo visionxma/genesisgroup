@@ -3,6 +3,19 @@
  * Design replicado do Genesis Group
  */
 
+// ==================================================================
+// Um vídeo de cada vez — intercepta .play() no protótipo (roda imediato)
+// ==================================================================
+(function() {
+    const _originalPlay = HTMLVideoElement.prototype.play;
+    HTMLVideoElement.prototype.play = function() {
+        document.querySelectorAll('video').forEach(function(v) {
+            if (v !== this) { try { v.pause(); v.currentTime = 0; } catch(e) {} }
+        }, this);
+        return _originalPlay.apply(this, arguments);
+    };
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==================================================================
@@ -46,15 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('open');
             document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
-
-        // Fechar ao clicar no botão X
-        const menuClose = document.getElementById('menuClose');
-        if (menuClose) {
-            menuClose.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-                document.body.style.overflow = '';
-            });
-        }
 
         // Fechar ao clicar em link
         navLinks.querySelectorAll('a').forEach(link => {
