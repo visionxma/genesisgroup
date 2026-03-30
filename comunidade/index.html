@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Grupo VIP | Allan Costa — Opções Binárias</title>
+
+    <meta name="description"
+        content="Seja meu sócio. Entre no Grupo VIP de Opções Binárias com Allan Costa e receba sinais diários com mais de 7 anos de experiência.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/genesis-logo.svg">
+
+    <!-- Pixel Manager - Cole no <head> do seu site -->
+    <script>
+        (function () {
+            var SUPABASE_URL = 'https://tcwpfgfddxajlewhmwjr.supabase.co';
+            var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjd3BmZ2ZkZHhhamxld2htd2pyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTA1MDQsImV4cCI6MjA4ODU4NjUwNH0.j-i0-iYeFqgVNs-oBS4LTiLW6lJYBL7lwRqxBbXChNc';
+            var EDGE_FUNCTION_URL = 'https://fxmsbynbgwlwtekxqmak.supabase.co/functions/v1';
+            var hostname = window.location.hostname;
+            var pathname = window.location.pathname.replace(/\/$/, '');
+            var fullDomain = hostname + pathname;
+            var headers = { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY };
+            var domainFilter = 'or=(domain.eq.' + encodeURIComponent(hostname) + ',domain.eq.' + encodeURIComponent(fullDomain) + ')';
+
+            console.log('[PixelManager] Hostname:', hostname, '| Full:', fullDomain);
+
+            // --- Pixels ---
+            fetch(SUPABASE_URL + '/rest/v1/pixels?active=eq.true&' + domainFilter + '&select=platform,pixel_id', { headers: headers })
+                .then(function (r) { return r.json(); })
+                .then(function (pixels) {
+                    console.log('[PixelManager] Pixels encontrados:', pixels.length, pixels);
+                    pixels.forEach(function (p) {
+                        switch (p.platform) {
+                            case 'facebook':
+                                !function (f, b, e, v, n, t, s) {
+                                    if (f.fbq) return; n = f.fbq = function () {
+                                        n.callMethod ?
+                                            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                                    }; if (!f._fbq) f._fbq = n;
+                                    n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+                                    t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+                                }
+                                    (window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                                fbq('init', p.pixel_id); fbq('track', 'PageView');
+                                break;
+                            case 'google_analytics':
+                                var gs = document.createElement('script'); gs.async = true;
+                                gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + p.pixel_id;
+                                document.head.appendChild(gs);
+                                window.dataLayer = window.dataLayer || [];
+                                function gtag() { dataLayer.push(arguments); }
+                                gtag('js', new Date()); gtag('config', p.pixel_id);
+                                break;
+                            case 'google_tag_manager':
+                                (function (w, d, s, l, i) {
+                                    w[l] = w[l] || []; w[l].push({
+                                        'gtm.start':
+                                            new Date().getTime(), event: 'gtm.js'
+                                    }); var f = d.getElementsByTagName(s)[0],
+                                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true;
+                                    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                                    f.parentNode.insertBefore(j, f);
+                                })(window, document, 'script', 'dataLayer', p.pixel_id);
+                                break;
+                            case 'tiktok':
+                                !function (w, d, t) {
+                                    w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+                                    ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"];
+                                    ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+                                    for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]);
+                                    ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e };
+                                    ttq.load = function (e, n) {
+                                        var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+                                        ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = i; ttq._t = ttq._t || {}; ttq._t[e + "_" + n] = 1;
+                                        var o = document.createElement("script"); o.type = "text/javascript"; o.async = !0; o.src = i + "?sdkid=" + e + "&lib=" + t;
+                                        var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(o, a)
+                                    };
+                                    ttq.load(p.pixel_id); ttq.page();
+                                }(window, document, 'ttq');
+                                break;
+                            case 'custom':
+                                var cs = document.createElement('script'); cs.async = true;
+                                cs.src = p.pixel_id; document.head.appendChild(cs);
+                                break;
+                        }
+                    });
+                })
+                .catch(function (err) { console.error('[PixelManager] Erro ao buscar pixels:', err); });
+
+            // --- WhatsApp/Telegram Link Interceptor ---
+            fetch(SUPABASE_URL + '/rest/v1/sites?active=eq.true&' + domainFilter + '&select=id', { headers: headers })
+                .then(function (r) { return r.json(); })
+                .then(function (sites) {
+                    console.log('[PixelManager] Sites encontrados:', sites);
+                    if (!sites || !sites.length) {
+                        console.warn('[PixelManager] Nenhum site encontrado para "' + hostname + '" ou "' + fullDomain + '".');
+                        return;
+                    }
+                    var siteId = sites[0].id;
+                    console.log('[PixelManager] Site ID:', siteId);
+                    var redirectBase = EDGE_FUNCTION_URL + '/whatsapp-redirect?siteId=' + siteId;
+
+                    function isGroupLink(href) {
+                        if (!href) return false;
+                        return href.indexOf('wa.me') !== -1 ||
+                            href.indexOf('api.whatsapp.com') !== -1 ||
+                            href.indexOf('whatsapp.com') !== -1 ||
+                            href.indexOf('chat.whatsapp.com') !== -1 ||
+                            href.indexOf('t.me') !== -1 ||
+                            href.indexOf('telegram.me') !== -1;
+                    }
+
+                    function getGroupUrl(el) {
+                        var href = el.getAttribute('href') || el.getAttribute('data-href') || '';
+                        if (isGroupLink(href)) return href;
+                        var onclick = el.getAttribute('onclick') || '';
+                        var match = onclick.match(/(https?:\/\/(?:wa\.me|api\.whatsapp\.com|whatsapp\.com|chat\.whatsapp\.com|t\.me|telegram\.me)[^"'\s)]*)/i);
+                        if (match) return match[1];
+                        var parent = el.closest('a[href]');
+                        if (parent && isGroupLink(parent.getAttribute('href'))) return parent.getAttribute('href');
+                        return null;
+                    }
+
+                    function interceptLinks() {
+                        var allElements = document.querySelectorAll('a[href], button, [onclick], [data-href], [role="button"], [role="link"]');
+                        var intercepted = 0;
+                        allElements.forEach(function (el) {
+                            if (el.__pmWaIntercepted) return;
+                            var groupUrl = getGroupUrl(el);
+                            if (!groupUrl) return;
+                            el.__pmWaIntercepted = true;
+                            intercepted++;
+                            console.log('[PixelManager] Elemento interceptado:', el.tagName, groupUrl);
+                            el.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                var redirectUrl = redirectBase + '&original=' + encodeURIComponent(groupUrl) + '&page=' + encodeURIComponent(window.location.href);
+                                console.log('[PixelManager] Redirecionando para:', redirectUrl);
+                                window.open(redirectUrl, '_blank', 'noopener');
+                            });
+                        });
+                        if (intercepted > 0) console.log('[PixelManager] Total interceptados:', intercepted);
+                    }
+
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', interceptLinks);
+                    } else {
+                        interceptLinks();
+                    }
+
+                    if (typeof MutationObserver !== 'undefined') {
+                        var observer = new MutationObserver(function () { interceptLinks(); });
+                        observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
+                    }
+                })
+                .catch(function (err) { console.error('[PixelManager] Erro ao buscar sites:', err); });
+        })();
+    </script>
+
+    <style>
+        /* ======================================================
+           RESET & BASE
+        ====================================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #CCFF00;
+            --green-glow: rgba(204, 255, 0, 0.35);
+            --green-dark: #99CC00;
+            --black: #000000;
+            --panel: #111111;
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --text-white: #FFFFFF;
+            --text-muted: #AAAAAA;
+            --font: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: var(--black);
+        }
+
+        body {
+            font-family: var(--font);
+            color: var(--text-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ======================================================
+           TICKER
+        ====================================================== */
+        .trading-ticker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 12, 0.55);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 9px 0;
+            z-index: 100;
+            overflow: hidden;
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: ticker-scroll 25s linear infinite;
+        }
+
+        .ticker-content {
+            display: flex;
+            gap: 40px;
+            padding-right: 40px;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #98989D;
+            white-space: nowrap;
+        }
+
+        .ticker-item strong {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .ticker-item .up {
+            color: var(--green);
+        }
+
+        .ticker-item .down {
+            color: #FF3333;
+        }
+
+        .ticker-item i {
+            width: 13px;
+            height: 13px;
+        }
+
+        @keyframes ticker-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ======================================================
+           SOCIAL PROOF BANNER
+        ====================================================== */
+        .social-proof-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 36px 24px 0;
+            text-align: center;
+        }
+
+        .social-proof-number {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--green);
+            line-height: 1;
+            letter-spacing: -2px;
+            text-shadow: 0 0 20px var(--green-glow);
+        }
+
+        .social-proof-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-white);
+            max-width: 280px;
+            line-height: 1.4;
+        }
+
+        .social-proof-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            animation: bounce-arrow 1.4s ease-in-out infinite;
+        }
+
+        @keyframes bounce-arrow {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        /* ======================================================
+           HERO
+        ====================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-top: 38px;
+            padding-bottom: 60px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center 15%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.20) 0%,
+                    rgba(0, 0, 0, 0.50) 40%,
+                    rgba(0, 0, 0, 0.92) 75%,
+                    rgba(0, 0, 0, 1.00) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-logo {
+            height: 80px;
+            width: auto;
+            filter: drop-shadow(0 0 20px var(--green-glow));
+            margin-bottom: 4px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(204, 255, 0, 0.15);
+            border: 1px solid rgba(204, 255, 0, 0.4);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+
+        .hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--green);
+            animation: blink 1.4s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .hero-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-title .green {
+            color: var(--green);
+            text-shadow: 0 0 20px var(--green-glow);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: #DDDDDD;
+            font-weight: 400;
+            line-height: 1.5;
+            max-width: 420px;
+            opacity: 0.9;
+        }
+
+        /* Counter */
+        .counter-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(204, 255, 0, 0.08);
+            border: 1px solid rgba(204, 255, 0, 0.25);
+            border-radius: 14px;
+            padding: 14px 22px;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .counter-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .counter-text {
+            text-align: left;
+        }
+
+        .counter-number {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1.3;
+        }
+
+        .counter-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* CTA Button */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 380px;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+            color: #000;
+            font-size: 1rem;
+            font-weight: 800;
+            font-family: var(--font);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.4), 0 8px 25px rgba(0, 0, 0, 0.4);
+            animation: pulse-cta 2s ease-in-out infinite;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 45px rgba(204, 255, 0, 0.6), 0 12px 35px rgba(0, 0, 0, 0.5);
+            animation: none;
+        }
+
+        .btn-cta svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse-cta {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(204, 255, 0, 0.4), 0 8px 25px rgba(0, 0, 0, 0.4);
+            }
+
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 0 50px rgba(204, 255, 0, 0.65), 0 12px 30px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .cta-hint {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: -8px;
+        }
+
+        /* ======================================================
+           SECTION WRAPPER
+        ====================================================== */
+        .section {
+            padding: 70px 24px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title .green {
+            color: var(--green);
+            text-shadow: 0 0 14px var(--green-glow);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        /* ======================================================
+           CAROUSEL (PROVA SOCIAL)
+        ====================================================== */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--panel-border);
+            background: var(--panel);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img,
+        .carousel-slide video {
+            width: 100%;
+            height: auto;
+            max-height: 560px;
+            object-fit: contain;
+            display: block;
+            background: #000;
+        }
+
+        .carousel-slide-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 18px 20px 16px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .carousel-slide-label .profit {
+            display: inline-block;
+            background: var(--green);
+            color: #000;
+            font-weight: 800;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            margin-bottom: 4px;
+        }
+
+        /* Video play overlay */
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 68px;
+            height: 68px;
+            background: rgba(0, 0, 0, 0.65);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 6;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .video-play-btn svg {
+            width: 26px;
+            height: 26px;
+            color: #fff;
+            margin-left: 4px;
+        }
+
+        .video-play-btn:hover {
+            background: rgba(204, 255, 0, 0.25);
+            border-color: var(--green);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .video-play-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Nav arrows */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: background 0.2s;
+            color: #fff;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(204, 255, 0, 0.2);
+            border-color: var(--green);
+        }
+
+        .carousel-btn.prev {
+            left: 12px;
+        }
+
+        .carousel-btn.next {
+            right: 12px;
+        }
+
+        .carousel-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .dot.active {
+            background: var(--green);
+            transform: scale(1.3);
+            box-shadow: 0 0 8px var(--green-glow);
+        }
+
+        /* ======================================================
+           FEATURES LIST
+        ====================================================== */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--panel-border);
+            border-radius: 14px;
+            padding: 18px 20px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: rgba(204, 255, 0, 0.25);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(204, 255, 0, 0.1);
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--green);
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .feature-text h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ======================================================
+           PROFILE STRIP
+        ====================================================== */
+        .profile-strip {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(204, 255, 0, 0.06);
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 40px;
+        }
+
+        .profile-strip-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            border: 2px solid var(--green);
+            flex-shrink: 0;
+        }
+
+        .profile-strip-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .profile-strip-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .profile-strip-badge {
+            margin-left: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .profile-strip-badge span {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--green);
+            line-height: 1;
+            text-shadow: 0 0 10px var(--green-glow);
+        }
+
+        .profile-strip-badge small {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        /* ======================================================
+           FOOTER
+        ====================================================== */
+        .page-footer {
+            padding: 30px 24px 40px;
+            text-align: center;
+            border-top: 1px solid var(--panel-border);
+        }
+
+        .page-footer img {
+            height: 28px;
+            opacity: 0.4;
+            margin-bottom: 12px;
+        }
+
+        .page-footer p {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.25);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ======================================================
+           DIVIDER
+        ====================================================== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--panel-border), transparent);
+            margin: 0 24px;
+        }
+
+        /* ======================================================
+           RESPONSIVE
+        ====================================================== */
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.45rem;
+            }
+
+            .section {
+                padding: 50px 20px;
+            }
+
+            .hero {
+                justify-content: center;
+                padding-top: 80px;
+                padding-bottom: 40px;
+            }
+
+            .btn-cta {
+                font-size: 0.78rem;
+                padding: 16px 18px;
+                gap: 7px;
+                white-space: nowrap;
+            }
+
+            .btn-cta svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .carousel-slide img,
+            .carousel-slide video {
+                max-height: 680px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ticker de mercado fixo no topo -->
+    <div class="trading-ticker">
+        <div class="ticker-track">
+            <div class="ticker-content">
+                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945
+                        (+0.12%)</strong></span>
+                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530
+                        (-0.05%)</strong></span>
+                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20
+                        (+0.30%)</strong></span>
+                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515
+                        (+0.18%)</strong></span>
+                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490
+                        (-0.22%)</strong></span>
+                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00
+                        (+1.45%)</strong></span>
+                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15
+                        (+2.10%)</strong></span>
+            </div>
+            <div class="ticker-content">
+                <span class="ticker-item">EUR/USD <strong class="up"><i data-lucide="trending-up"></i> 1.0945
+                        (+0.12%)</strong></span>
+                <span class="ticker-item">GBP/USD <strong class="down"><i data-lucide="trending-down"></i> 1.2530
+                        (-0.05%)</strong></span>
+                <span class="ticker-item">USD/JPY <strong class="up"><i data-lucide="trending-up"></i> 148.20
+                        (+0.30%)</strong></span>
+                <span class="ticker-item">AUD/USD <strong class="up"><i data-lucide="trending-up"></i> 0.6515
+                        (+0.18%)</strong></span>
+                <span class="ticker-item">USD/CAD <strong class="down"><i data-lucide="trending-down"></i> 1.3490
+                        (-0.22%)</strong></span>
+                <span class="ticker-item">BTC/USD <strong class="up"><i data-lucide="trending-up"></i> 64,250.00
+                        (+1.45%)</strong></span>
+                <span class="ticker-item">ETH/USD <strong class="up"><i data-lucide="trending-up"></i> 3,420.15
+                        (+2.10%)</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <img src="../assets/icons/genesis-logo.svg" alt="Genesis Group" class="hero-logo">
+
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Grupo Ativo Agora
+            </div>
+
+            <h1 class="hero-title">
+                Trader, Tá Cansado de Promessas? <span class="green">O Mercado É Um Jogo De Cartas Marcadas.</span>
+            </h1>
+
+            <p class="hero-subtitle">Eu Vou Te Mostrar Como Lucrar Todos Os Dias Aproveitando A Manipulação Do Mercado
+            </p>
+
+            <div class="counter-box">
+                <div class="counter-text">
+                    <div class="counter-number">Entre no grupo <strong>AGORA</strong> para garantir que sua conta seja a
+                        próxima a ser priorizada para a <strong>Alavancagem</strong> e veja com seus próprios olhos!
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://chat.whatsapp.com/EFSGCz2JFNXCxJVPmu6kZm" target="_blank" class="btn-cta"
+                onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Hero'})">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z" />
+                </svg>
+                Entrar no Grupo VIP Agora
+            </a>
+
+            <p class="cta-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" style="width:12px;height:12px;vertical-align:middle;margin-right:4px">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                Acesso imediato via WhatsApp · Sem cartão de crédito
+            </p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================
+         PROVA SOCIAL — CAROUSEL
+    ============================================================ -->
+    <div class="social-proof-banner">
+        <div class="social-proof-number">289+</div>
+        <p class="social-proof-text">pessoas já lucraram usando o Padrão L.M.E</p>
+        <div class="social-proof-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" width="22" height="22">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Resultados <span class="green">Reais</span></h2>
+        <p class="section-subtitle">Membros do grupo enviando os lucros toda semana
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="width:14px;height:14px;vertical-align:middle;margin-left:2px">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
+            </svg>
+        </p>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="../assets/provasgrupo/IMG_4345.jpg" alt="Prova de resultado 1">
+                    <div class="carousel-slide-label">
+                        <span class="profit">Membro do Grupo</span><br>
+                        Resultado real enviado no grupo VIP
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/provasgrupo/IMG_4347.jpg" alt="Prova de resultado 2">
+                    <div class="carousel-slide-label">
+                        <span class="profit">Membro do Grupo</span><br>
+                        Sinal entrou, lucro no bolso
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/provasgrupo/IMG_4349.jpg" alt="Prova de resultado 3">
+                    <div class="carousel-slide-label">
+                        <span class="profit">Membro do Grupo</span><br>
+                        Price Action + gestão = consistência
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <video playsinline preload="metadata">
+                        <source src="../assets/provasgrupo/WhatsApp%20Video%202025-08-18%20at%2016.33.16.MOV"
+                            type="video/mp4">
+                    </video>
+                    <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                    </button>
+                    <div class="carousel-slide-label">
+                        <span class="profit">Vídeo · Ao Vivo</span><br>
+                        Operação em tempo real no grupo
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <video playsinline preload="metadata">
+                        <source src="../assets/provasgrupo/WhatsApp%20Video%202025-08-18%20at%2018.53.33.mp4"
+                            type="video/mp4">
+                    </video>
+                    <button class="video-play-btn" aria-label="Reproduzir vídeo">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                    </button>
+                    <div class="carousel-slide-label">
+                        <span class="profit">Vídeo · Resultado</span><br>
+                        Membro mostrando o lucro do dia
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+            </button>
+            <button class="carousel-btn next" id="nextBtn" aria-label="Próximo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ============================================================
+         O QUE VOCÊ RECEBE
+    ============================================================ -->
+    <div class="section">
+        <h2 class="section-title">O Padrão <span class="green">L.M.E</span></h2>
+        <p class="section-subtitle">Como Lucrar no Rastro da Manipulação do Gráfico</p>
+
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                        <path d="M2 17l10 5 10-5" />
+                        <path d="M2 12l10 5 10-5" />
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h4>L — Liquidez</h4>
+                    <p>O mercado vai buscar onde estão os stops antes de mover de verdade. Aprenda a identificar as
+                        zonas de liquidez que os grandes players miram.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h4>M — Manipulação</h4>
+                    <p>O movimento falso que engana o varejo. Você vai aprender a reconhecer a armadilha antes de cair
+                        nela — e operar exatamente no sentido inverso.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h4>E — Expansão</h4>
+                    <p>Depois da manipulação vem o movimento real. Esse é o momento de entrar e lucrar no rastro do
+                        gráfico — com alta probabilidade e gestão precisa.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4l3 3" />
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h4>Sinais Diários no Grupo</h4>
+                    <p>Receba as entradas baseadas no L.M.E em tempo real, direto no WhatsApp. Ativo, horário e direção
+                        — sem achismo.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h4>Alavancagem de Conta</h4>
+                    <p>Membros selecionados têm a conta priorizada para alavancagem. Entre agora e garanta sua vaga na
+                        fila.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perfil do trader -->
+        <div class="profile-strip">
+            <img src="../assets/images/gallery-1.jpg" alt="Allan Costa" class="profile-strip-img">
+            <div class="profile-strip-info">
+                <h4>Allan Costa</h4>
+                <p>Trader de Opções Binárias · Price Action</p>
+            </div>
+            <div class="profile-strip-badge">
+                <span>+7</span>
+                <small>anos no<br>mercado</small>
+            </div>
+        </div>
+
+        <!-- CTA repetido -->
+        <a href="https://chat.whatsapp.com/EFSGCz2JFNXCxJVPmu6kZm" target="_blank" class="btn-cta"
+            style="max-width:100%; animation-delay:0.5s;"
+            onclick="typeof fbq !== 'undefined' && fbq('track', 'Lead', {content_name: 'Grupo VIP Features'})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" style="width:18px;height:18px">
+                <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.09 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.13.96.36 1.9.69 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.56 2.81.69A2 2 0 0122 14.92v2z" />
+            </svg>
+            Quero Entrar no Grupo VIP
+        </a>
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="page-footer">
+        <img src="../assets/icons/genesis-logo.svg" alt="Genesis Group">
+        <p>
+            &copy; 2026 Genesis Group · Allan Costa<br></p>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPTS
+    ============================================================ -->
+    <script>
+        /* ---------- Carousel ---------- */
+        const track = document.getElementById('carouselTrack');
+        const dotsEl = document.getElementById('carouselDots');
+        const slides = track.querySelectorAll('.carousel-slide');
+        let current = 0;
+        let autoplay;
+
+        // Criar dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goTo(i));
+            dotsEl.appendChild(dot);
+        });
+
+        function goTo(index) {
+            current = (index + slides.length) % slides.length;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dotsEl.querySelectorAll('.dot').forEach((d, i) => {
+                d.classList.toggle('active', i === current);
+            });
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            goTo(current - 1);
+            resetAutoplay();
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            goTo(current + 1);
+            resetAutoplay();
+        });
+
+        function startAutoplay() {
+            autoplay = setInterval(() => goTo(current + 1), 5000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplay);
+            startAutoplay();
+        }
+
+        startAutoplay();
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+
+        // Bloqueia pinch-to-zoom em todos os browsers mobile
+        document.addEventListener('touchmove', function (e) {
+            if (e.touches.length > 1) e.preventDefault();
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        document.addEventListener('gesturechange', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
+
+</body>
+
+</html>
