@@ -442,8 +442,10 @@ a {
 }
 
 .btn-social i {
-    width: 28px;
-    height: 28px;
+    font-size: 28px;
+    width: auto;
+    height: auto;
+    line-height: 1;
 }
 
 /* Cor Forte Youtube */
