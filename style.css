@@ -3,17 +3,22 @@
    ========================================================================== */
 
 :root {
-    --color-bg-dark:    #000000;
-    --color-bg-panel:   #111111;
+    --color-bg-dark: #000000;
+    /* Pure HDR Black Apple UI */
+    --color-bg-panel: #1C1C1E;
+    /* iOS native subtle gray surface */
     --color-neon-green: #CCFF00;
-    --color-neon-glow:  rgba(204, 255, 0, 0.25);
+    --color-neon-glow: rgba(204, 255, 0, 0.25);
+    /* Glow mais refiando */
     --color-text-title: #FFFFFF;
-    --color-text-body:  #98989D;
-    --glass-bg:         rgba(20, 20, 22, 0.45);
-    --glass-border:     rgba(255, 255, 255, 0.09);
-    --font:             'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    --transition:       color 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    --bottom-bar-h:     112px;
+    --color-text-body: #98989D;
+    /* iOS standard text gray */
+    --glass-bg: rgba(28, 28, 30, 0.35);
+    /* iOS System Material translucent base */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 * {
@@ -37,7 +42,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     color: var(--color-text-body);
-    font-family: var(--font);
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -46,7 +51,7 @@ body {
 h1,
 h2,
 h3 {
-    font-family: var(--font);
+    font-family: var(--font-heading);
     color: var(--color-text-title);
     line-height: 1.2;
 }
@@ -85,10 +90,10 @@ a {
     padding: 16px 32px;
     font-size: 1.1rem;
     font-weight: 600;
-    font-family: var(--font);
+    font-family: var(--font-heading);
     border-radius: 999px;
     /* Formato Pill da Apple App Store */
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     cursor: pointer;
     border: none;
     text-transform: uppercase;
@@ -152,7 +157,7 @@ a {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--color-text-body);
-    font-family: var(--font);
+    font-family: var(--font-heading);
     white-space: nowrap;
 }
 
@@ -194,7 +199,7 @@ a {
     gap: 12px;
     font-size: 0.85rem;
     color: var(--color-text-body);
-    font-family: var(--font);
+    font-family: var(--font-heading);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -258,7 +263,7 @@ a {
     display: block;
     filter: drop-shadow(0 0 20px rgba(204, 255, 0, 0.6));
     animation: pulsateLogo 4s ease-in-out infinite;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .brand-logo:hover {
@@ -421,8 +426,8 @@ a {
     padding: 16px 24px;
     border-radius: 999px;
     font-weight: 600;
-    font-family: var(--font);
-    transition: var(--transition);
+    font-family: var(--font-heading);
+    transition: var(--transition-smooth);
     text-transform: uppercase;
     font-size: 1.1rem;
     width: 100%;
@@ -676,7 +681,7 @@ a {
     justify-content: center;
     color: var(--color-neon-green);
     box-shadow: inset 0 0 20px rgba(204, 255, 0, 0.05);
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
 .premium-card:hover .icon-box {
@@ -692,7 +697,7 @@ a {
 }
 
 .step-num {
-    font-family: var(--font);
+    font-family: var(--font-heading);
     font-size: 3.5rem;
     font-weight: 800;
     color: transparent;
@@ -700,7 +705,7 @@ a {
     /* Texto Oco/Vazado Premium */
     opacity: 0.6;
     line-height: 0.8;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     margin-top: -5px;
 }
 
@@ -909,7 +914,7 @@ a {
     flex-direction: column;
     text-align: left;
     line-height: 1.1;
-    font-family: var(--font);
+    font-family: var(--font-heading);
     text-transform: uppercase;
     font-size: 0.75rem;
     font-weight: 700;
@@ -937,7 +942,7 @@ a {
     border-radius: 24px;
     padding: 1px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     z-index: 2;
 }
 
@@ -1102,7 +1107,7 @@ a {
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     text-decoration: none;
 }
 
@@ -1136,7 +1141,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: var(--font);
+    font-family: var(--font-heading);
     z-index: 1;
 }
 
