@@ -1,0 +1,1188 @@
+/* ==========================================================================
+   Design System & CSS - Allan Costa (Ultra Resumido e Objetivo)
+   ========================================================================== */
+
+:root {
+    --color-bg-dark: #000000;
+    /* Pure HDR Black Apple UI */
+    --color-bg-panel: #1C1C1E;
+    /* iOS native subtle gray surface */
+    --color-neon-green: #CCFF00;
+    --color-neon-glow: rgba(204, 255, 0, 0.25);
+    /* Glow mais refiando */
+    --color-text-title: #FFFFFF;
+    --color-text-body: #98989D;
+    /* iOS standard text gray */
+    --glass-bg: rgba(28, 28, 30, 0.35);
+    /* iOS System Material translucent base */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-bg-dark);
+    background-image: url('https://framerusercontent.com/images/rt3hIAGM2E1e1YlaAI6zWsHtbk.png?width=1440&height=1716');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--color-text-body);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: var(--color-text-title);
+    line-height: 1.2;
+}
+
+.neon-text {
+    color: var(--color-neon-green);
+    text-shadow: 0 0 15px var(--color-neon-glow);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Botões do Tema Base */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    border-radius: 999px;
+    /* Formato Pill da Apple App Store */
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: var(--color-neon-green);
+    color: #000;
+    box-shadow: 0 0 25px var(--color-neon-glow);
+}
+
+.glow-btn {
+    box-shadow: 0 0 30px var(--color-neon-glow);
+}
+
+.glow-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px var(--color-neon-glow);
+    background-color: #E2FF4D;
+}
+
+.btn-large {
+    width: 100%;
+    padding: 20px 32px;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   TICKER DE MERCADO (CARROSSEL HEADER)
+   ========================================================================== */
+.trading-ticker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 12, 0.45);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 10px 0;
+    z-index: 100;
+    overflow: hidden;
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+}
+
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker-scroll 25s linear infinite;
+}
+
+.ticker-content {
+    display: flex;
+    gap: 40px;
+    padding-right: 40px;
+}
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-body);
+    font-family: var(--font-heading);
+    white-space: nowrap;
+}
+
+.ticker-item strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.ticker-item .up {
+    color: var(--color-neon-green);
+}
+
+.ticker-item .down {
+    color: #FF3333;
+}
+
+.ticker-item i {
+    width: 14px;
+    height: 14px;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ==========================================================================
+   LOADING STYLE (GRÁFICO DE VELAS/BARRAS)
+   ========================================================================== */
+.financial-loader {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.candle-loader {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+}
+
+/* Simulando os Candles do Gráfico oscilando! */
+.candle-bar {
+    width: 4px;
+    height: 4px;
+    background: var(--color-neon-green);
+    border-radius: 4px;
+    animation: candle-bounce 0.6s infinite alternate ease-in-out;
+    box-shadow: 0 0 8px rgba(204, 255, 0, 0.4);
+}
+
+/* O segundo candelabro e o quarto viram velas vermelhas de "PUT" */
+.candle-bar:nth-child(2) {
+    background: #FF3333;
+    box-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
+    animation-delay: 0.2s;
+}
+
+.candle-bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.candle-bar:nth-child(4) {
+    background: #FF3333;
+    box-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
+    animation-delay: 0.1s;
+}
+
+.candle-bar:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+@keyframes candle-bounce {
+    0% {
+        height: 4px;
+    }
+
+    100% {
+        height: 24px;
+    }
+}
+
+/* Removemos a Navbar Fixa para deixar a logo limpa no Hero */
+.brand-logo {
+    height: 115px;
+    /* Aumentado conforme solicitado, mantendo proporção no mobile */
+    max-width: 95%;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(204, 255, 0, 0.6));
+    animation: pulsateLogo 4s ease-in-out infinite;
+    transition: var(--transition-smooth);
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 35px rgba(204, 255, 0, 0.9));
+}
+
+@keyframes pulsateLogo {
+    0% {
+        transform: translateY(0) scale(1);
+        filter: drop-shadow(0 0 15px rgba(204, 255, 0, 0.4));
+    }
+
+    50% {
+        transform: translateY(-5px) scale(1.03);
+        filter: drop-shadow(0 0 35px rgba(204, 255, 0, 0.8));
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        filter: drop-shadow(0 0 15px rgba(204, 255, 0, 0.4));
+    }
+}
+
+.hero-page-logo {
+    margin-bottom: 30px;
+}
+
+/* ==========================================================================
+   SESSÃO HERO (DESTAQUE DA IMAGEM DE FUNDO E REDES SOCIAIS)
+   ========================================================================== */
+.hero {
+    position: relative;
+    padding: 100px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* ⚠️ FUNDO DE TELA - A FOTO VEM AQUI */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Imagem enviada pelo usuário */
+    background-image: url('assets/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    /* Foco melhorado na parte superior/rostos */
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+/* Película escura sobre a foto para permitir que o texto fique legível */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(7, 9, 13, 0.70) 0%, rgba(7, 9, 13, 0.95) 100%);
+    z-index: -1;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(204, 255, 0, 0.2);
+    border: 1px solid rgba(204, 255, 0, 0.4);
+    border-radius: 50px;
+    color: var(--color-neon-green);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    backdrop-filter: blur(8px);
+    margin-bottom: 10px;
+}
+
+.icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+.headline {
+    font-size: 1.5rem;
+    letter-spacing: -1.2px;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    margin-bottom: 5px;
+    opacity: 0.95;
+}
+
+.subheadline {
+    font-size: 0.9rem;
+    color: #EBEBF5;
+    max-width: 650px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    line-height: 1.4;
+    opacity: 0.85;
+}
+
+.hero-actions {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 10px;
+}
+
+
+/* ==========================================================================
+   GALERIA 3D ANIMADA (CARROSSEL ROTATIVO)
+   ========================================================================== */
+.gallery-3d-section {
+    padding: 60px 0 100px;
+    background: transparent;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-title {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    text-shadow: 0 0 10px rgba(204, 255, 0, 0.3);
+}
+
+.carousel-container {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-3d {
+    width: 250px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCarousel 20s infinite linear;
+}
+
+.carousel-item {
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    background: var(--glass-bg);
+    border: 2px solid var(--color-neon-green);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(204, 255, 0, 0.2);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 6 Items = 360 / 6 = 60 degrees. TranslateZ pushes them out */
+.carousel-item:nth-child(1) {
+    transform: rotateY(0deg) translateZ(300px);
+}
+
+.carousel-item:nth-child(2) {
+    transform: rotateY(60deg) translateZ(300px);
+}
+
+.carousel-item:nth-child(3) {
+    transform: rotateY(120deg) translateZ(300px);
+}
+
+.carousel-item:nth-child(4) {
+    transform: rotateY(180deg) translateZ(300px);
+}
+
+.carousel-item:nth-child(5) {
+    transform: rotateY(240deg) translateZ(300px);
+}
+
+.carousel-item:nth-child(6) {
+    transform: rotateY(300deg) translateZ(300px);
+}
+
+@keyframes rotateCarousel {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(-360deg);
+    }
+}
+
+/* CARDS DE FUNCIONALIDADES PREMIUM (Dribbble Style) */
+.features {
+    padding: 90px 0 110px;
+    position: relative;
+    background: transparent;
+    z-index: 1;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.premium-card {
+    position: relative;
+    border-radius: 20px;
+    background: transparent;
+    padding: 1px;
+    /* Para simular a borda gradiente através da máscara */
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 2;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Criação da Borda Gradiente Inteligente Neon */
+.premium-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.3), rgba(255, 255, 255, 0.0) 50%, rgba(204, 255, 0, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: opacity 0.5s ease, background 0.5s ease;
+}
+
+/* Interior do Card que segura o efeito Vidro Profundo */
+.card-inner {
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 19px;
+    padding: 40px 30px;
+    height: 100%;
+    position: relative;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Brilho interno dinâmico */
+.card-glow {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(204, 255, 0, 0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+    opacity: 0.3;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.premium-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(204, 255, 0, 0.08);
+}
+
+.premium-card:hover .card-glow {
+    transform: scale(1.5) translate(-10%, 10%);
+    opacity: 1;
+}
+
+.premium-card:hover::before {
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.8), rgba(204, 255, 0, 0.2) 60%, rgba(204, 255, 0, 0.5));
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    z-index: 1;
+}
+
+.icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.15) 0%, rgba(204, 255, 0, 0.02) 100%);
+    border: 1px solid rgba(204, 255, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-neon-green);
+    box-shadow: inset 0 0 20px rgba(204, 255, 0, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.premium-card:hover .icon-box {
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.25) 0%, rgba(204, 255, 0, 0.05) 100%);
+    border-color: rgba(204, 255, 0, 0.5);
+    box-shadow: inset 0 0 25px rgba(204, 255, 0, 0.15), 0 0 15px rgba(204, 255, 0, 0.3);
+}
+
+.icon-box i {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 8px rgba(204, 255, 0, 0.3));
+}
+
+.step-num {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+    /* Texto Oco/Vazado Premium */
+    opacity: 0.6;
+    line-height: 0.8;
+    transition: var(--transition-smooth);
+    margin-top: -5px;
+}
+
+.premium-card:hover .step-num {
+    -webkit-text-stroke: 1px rgba(204, 255, 0, 0.4);
+    color: rgba(204, 255, 0, 0.03);
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+.card-inner h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #FFF;
+    z-index: 1;
+}
+
+.card-inner p {
+    color: var(--color-text-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   FOOTER E CERTIFICADOS DE CONFIANÇA
+   ========================================================================== */
+.site-footer {
+    padding: 60px 0 40px;
+    background: #000;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.footer-subtitle {
+    margin-bottom: 40px;
+    color: var(--color-text-body);
+}
+
+.brand-logo-small {
+    height: 25px;
+    opacity: 0.5;
+    margin-bottom: 20px;
+}
+
+.disclaimer {
+    margin-top: 20px;
+    font-size: 0.75rem;
+    opacity: 0.4;
+}
+
+.safirion-verification-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(204, 255, 0, 0.05);
+    border: 1px solid rgba(204, 255, 0, 0.15);
+    padding: 12px 24px;
+    border-radius: 999px;
+    margin-bottom: 30px;
+}
+
+.safirion-verification-row i {
+    color: var(--color-neon-green);
+    width: 20px;
+    height: 20px;
+}
+
+.safirion-verification-row p {
+    margin: 0;
+    color: #FFF;
+    font-size: 0.85rem;
+}
+
+.safirion-verification-row strong {
+    color: var(--color-neon-green);
+    font-weight: 700;
+}
+
+/* Animações JS */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   SOCIAL PROOF SECTION
+   ========================================================================== */
+.social-proof-section {
+    padding: 80px 0;
+    background: transparent;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-body);
+    margin-bottom: 50px;
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.proof-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.proof-card:hover {
+    transform: scale(1.03);
+    border-color: var(--color-neon-green);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.proof-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .proof-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.fade-delay-1 {
+    transition-delay: 0.1s;
+}
+
+.fade-delay-2 {
+    transition-delay: 0.2s;
+}
+
+.fade-delay-3 {
+    transition-delay: 0.3s;
+}
+
+/* ==========================================================================
+   GAUSSIAN BLUR BLOBS (Efeitos Atmosféricos)
+   ========================================================================== */
+.blur-blob {
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(90px);
+    /* O Segredo do Gaussian Blur de alta qualidade */
+    animation: drift 12s infinite alternate ease-in-out;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(204, 255, 0, 0.4);
+    top: -10%;
+    left: -15%;
+}
+
+.blob-2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 255, 100, 0.3);
+    /* Um leve tom de verde mais frio pra contraste */
+    bottom: -5%;
+    right: -10%;
+    animation-direction: alternate-reverse;
+    animation-duration: 15s;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    50% {
+        transform: translate(50px, -30px) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-30px, 40px) scale(0.9);
+    }
+}
+
+/* ==========================================================================
+   RIBBON LATERAL (7 ANOS) E PROFILE
+   ========================================================================== */
+.ribbon-7years {
+    position: absolute;
+    top: 60px;
+    /* Movido para baixo pra não bater na nova barra verde de ações do topo */
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(90deg, var(--color-neon-green), #99Cc00);
+    color: #000;
+    padding: 10px 20px 10px 15px;
+    border-radius: 0 40px 40px 0;
+    box-shadow: 5px 5px 30px rgba(204, 255, 0, 0.3);
+    z-index: 10;
+    animation: slideInRibbon 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+@keyframes slideInRibbon {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.ribbon-7years i {
+    background: #000;
+    color: var(--color-neon-green);
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.ribbon-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.1;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.ribbon-text strong {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* ==========================================================================
+   SESSÃO DE AUTORIDADE (PROFILE CARD PREMIUM)
+   ========================================================================== */
+.authority-micro {
+    padding: 60px 0 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.premium-profile-card {
+    position: relative;
+    max-width: 850px;
+    margin: 0 auto;
+    border-radius: 24px;
+    padding: 1px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    transition: var(--transition-smooth);
+    z-index: 2;
+}
+
+.premium-profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.4), rgba(255, 255, 255, 0.0) 40%, rgba(204, 255, 0, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.premium-profile-card:hover {
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(204, 255, 0, 0.15);
+}
+
+.premium-profile-card:hover::before {
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.8), rgba(255, 255, 255, 0.0) 40%, rgba(204, 255, 0, 0.4));
+}
+
+.premium-profile-inner {
+    background: var(--glass-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 23px;
+    padding: 60px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.profile-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(204, 255, 0, 0.08) 0%, transparent 60%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.quote-icon {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    width: 60px;
+    height: 60px;
+    color: rgba(204, 255, 0, 0.05);
+    /* very subtle watermark effect */
+    z-index: 0;
+}
+
+.profile-img-wrapper {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 25px;
+    z-index: 2;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--color-neon-green), #034f1e);
+    box-shadow: 0 0 35px rgba(204, 255, 0, 0.3);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    border: 4px solid var(--color-bg-panel);
+}
+
+.profile-info {
+    z-index: 2;
+}
+
+.profile-info h3 {
+    font-size: 2.2rem;
+    color: #FFF;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.profile-info p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--color-text-body);
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.profile-info strong {
+    color: #000;
+    background: var(--color-neon-green);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   DESKTOP TWEAKS (Quando a tela é maior)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .brand-logo {
+        height: 130px;
+    }
+
+    /* Mantém gigante apenas no PC/Tablet */
+    .ribbon-7years {
+        top: 15%;
+    }
+
+    .headline {
+        font-size: 2.2rem;
+    }
+
+    /* Textos bem sutis inclusive no desktop */
+    .subheadline {
+        font-size: 0.95rem;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+/* ==========================================================================
+   SELO DE VERIFICAÇÃO SAFIRION (ESTÁTICO NO RODAPÉ)
+   ========================================================================== */
+.safirion-static-badge {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.safirion-badge-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: rgba(10, 12, 18, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+}
+
+.safirion-badge-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(204, 255, 0, 0.3);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(204, 255, 0, 0.08);
+}
+
+/* Efeito Glow Verde atrás do logo da Safirion */
+.safirion-badge-content::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, transparent 70%);
+    filter: blur(15px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.safirion-logo-footer {
+    height: 50px;
+    /* Logo grande e chamativa */
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.3));
+    z-index: 1;
+}
+
+.safirion-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-heading);
+    z-index: 1;
+}
+
+.safirion-verified-text {
+    font-size: 0.85rem;
+    color: var(--color-neon-green);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.safirion-trust-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #FFF;
+    letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+    .safirion-badge-content {
+        flex-direction: row;
+        /* Coloca lado a lado no desktop */
+        text-align: left;
+        align-items: center;
+        gap: 25px;
+        padding: 25px 50px;
+    }
+
+    .safirion-text-block {
+        align-items: flex-start;
+    }
+}
+
+/* ==========================================================================
+   MOBILE CARDS ADJUSTMENT (As per screenshot)
+   ========================================================================== */
+@media (max-width: 767px) {
+    .features-grid {
+        gap: 25px; /* Espaço real entre os cards, sem sobreposição */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .features-grid .premium-card {
+        width: 100%;
+        max-width: 360px;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease;
+        opacity: 0.4;
+        transform: translateY(30px);
+    }
+
+    .features-grid .premium-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Restaurando Alinhamento à Esquerda conforme imagem */
+    .card-inner {
+        text-align: left;
+        align-items: flex-start;
+        padding: 40px 30px;
+    }
+
+    .card-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    .step-num {
+        margin-top: -5px;
+        font-size: 3.5rem;
+    }
+}
+
+
