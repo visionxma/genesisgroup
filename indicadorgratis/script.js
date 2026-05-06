@@ -42,9 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Função para rastrear o Lead no Pixel e redirecionar
-function trackLead(e) {
+// Função para rastrear o Lead no Pixel
+function trackLead() {
     if (typeof fbq === 'function') {
         fbq('track', 'Lead');
+        console.log('[Pixel] Evento Lead disparado');
+    } else {
+        console.warn('[Pixel] fbq não está definido — Lead não foi enviado');
     }
 }
